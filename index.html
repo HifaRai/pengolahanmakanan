@@ -1,308 +1,941 @@
-<!doctype html>
+
+
+<!DOCTYPE html>
+
 <html lang="id">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f8f1ff">
-<title>Kotoba Bloom — Flashcards Jepang</title>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="theme-color" content="#f8f2ff">
+
+<title>Kotoba Bloom | Flashcard Jepang</title>
+
 <style>
-:root{--ink:#433d59;--muted:#8c849f;--lav:#e8dcff;--pink:#ffe1ec;--cream:#fff9ef;--mint:#dcf5e9;--line:#eee5f5;--purple:#9275c8;--shadow:0 16px 44px #74629b1c}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fbf7ff,#fff6f7 55%,#fffaf0);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
-button,input,select{font:inherit}button{cursor:pointer;border:0} .app{max-width:760px;margin:auto;padding:22px 16px 40px}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 22px}.brand{display:flex;align-items:center;gap:10px}.logo{width:45px;height:45px;border-radius:16px;background:linear-gradient(145deg,#e6d9ff,#ffdce9);display:grid;place-items:center;font-size:23px;box-shadow:0 7px 20px #b9a0dc35}.brand h1{font-size:21px;letter-spacing:-.7px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:12px}.pill{background:#fff9;border:1px solid var(--line);padding:9px 12px;border-radius:999px;font-size:12px;color:var(--muted)}
-.hero{padding:23px 21px;border-radius:26px;background:linear-gradient(115deg,#eee5ff,#ffe9f0 75%,#fff5e7);position:relative;overflow:hidden;margin-bottom:17px}.hero:after{content:"✿";position:absolute;font-size:115px;right:7px;top:-20px;color:#fff8;transform:rotate(15deg)}.eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#8a70b6;font-weight:800}.hero h2{font-size:27px;line-height:1.13;letter-spacing:-1px;margin:9px 0 8px;max-width:430px}.hero p{font-size:13px;line-height:1.55;color:#756b8c;margin:0;max-width:410px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:15px 0 20px}.stat{background:#ffffffb8;border:1px solid #f0e7f5;border-radius:17px;padding:13px 10px}.stat strong{font-size:19px;display:block}.stat span{font-size:11px;color:var(--muted)}
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}.field{background:#fffdfd;border:1px solid var(--line);border-radius:14px;padding:11px 12px;min-width:0;color:var(--ink);width:100%;outline:none}.search{grid-column:1/-1}.modebar{display:flex;gap:7px;overflow:auto;padding:2px 0 13px;scrollbar-width:none}.modebtn{white-space:nowrap;background:#fff9;border:1px solid var(--line);border-radius:999px;padding:10px 13px;color:#7e7395;font-size:12px}.modebtn.active{background:#8f76c6;color:white;border-color:#8f76c6;box-shadow:0 5px 14px #9c85cc35}
-.deck-top{display:flex;align-items:center;justify-content:space-between;margin:5px 2px 12px;font-size:12px;color:var(--muted)}.deck-top b{color:var(--ink)}.card-wrap{perspective:1200px;min-height:310px}.flashcard{height:310px;width:100%;position:relative;transform-style:preserve-3d;transition:transform .68s cubic-bezier(.2,.75,.2,1);cursor:pointer;outline:none}.flashcard.flipped{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;border:1px solid #fff;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:26px}.front{background:radial-gradient(circle at 12% 12%,#fff 0,transparent 35%),linear-gradient(145deg,#eee5ff,#ffe8f0)}.back{transform:rotateY(180deg);background:radial-gradient(circle at 90% 8%,#fff 0,transparent 30%),linear-gradient(145deg,#e1f6eb,#fff6e9)}.card-kicker{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#8d7ba9;margin-bottom:19px}.word{font-size:clamp(32px,8vw,53px);font-weight:750;letter-spacing:1px;line-height:1.3;overflow-wrap:anywhere}.reading{font-size:20px;color:#6c987f;margin:0 0 14px}.meaning{font-size:clamp(19px,4.5vw,26px);font-weight:700;line-height:1.35}.tap-hint{font-size:12px;color:#8e82a0;margin-top:23px}.card-deco{position:absolute;font-size:24px;opacity:.7}.d1{top:18px;left:20px}.d2{right:22px;bottom:17px}.actions{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:9px;margin:14px 0}.btn{border-radius:15px;padding:13px 10px;font-weight:700;font-size:13px;transition:transform .15s,filter .15s}.btn:active{transform:scale(.97)}.soft{background:#fff;border:1px solid var(--line);color:#7c7191}.main{background:#9275c8;color:white;box-shadow:0 7px 17px #9275c833}.know{background:#dcf5e9;color:#347b5d}.dont{background:#ffe3ec;color:#ad5879}
-.progress{height:6px;background:#eee6f4;border-radius:99px;overflow:hidden;margin:9px 2px 22px}.progress span{height:100%;display:block;background:linear-gradient(90deg,#b5a0ed,#f4a9c4);width:0;transition:width .3s}
-.section{background:#ffffffb8;border:1px solid var(--line);border-radius:22px;padding:17px;margin-top:15px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:13px}.section h3{font-size:15px;margin:0}.section small{color:var(--muted)}.quick{display:grid;grid-template-columns:1fr 1fr;gap:9px}.quick button{border:1px solid var(--line);background:#fff;border-radius:14px;text-align:left;padding:12px;color:var(--ink)}.quick b{display:block;font-size:13px;margin-bottom:4px}.quick span{font-size:11px;color:var(--muted)}.quiz-area{display:none}.quiz-q{font-size:25px;font-weight:750;text-align:center;padding:20px 0}.options{display:grid;gap:9px}.option{padding:14px;border-radius:14px;background:white;border:1px solid var(--line);text-align:left;color:var(--ink)}.option.correct{background:#e2f7eb;border-color:#a7ddbd}.option.wrong{background:#ffe8ef;border-color:#f1b4c8}.footer{text-align:center;font-size:11px;color:#a39ab0;line-height:1.6;margin:24px 10px 0}
-@media(min-width:600px){.app{padding:30px 24px 48px}.hero{padding:28px}.flashcard,.card-wrap{min-height:330px}.flashcard{height:330px}.face{padding:32px}}
-</style></head><body><main class="app">
-<header><div class="brand"><div class="logo">🌸</div><div><h1>Kotoba Bloom</h1><p>Japanese vocabulary garden</p></div></div><div class="pill">日本語 · ID</div></header>
-<section class="hero"><div class="eyebrow">little steps, big progress</div><h2>Hafalkan kotoba,<br>one card at a time.</h2><p>Flashcard pastel untuk persiapan kerja bidang pengolahan makanan di Jepang. Pelan-pelan, tapi konsisten. ✨</p></section>
-<div class="stats"><div class="stat"><strong id="totalStat">—</strong><span>Total kosakata</span></div><div class="stat"><strong id="knownStat">0</strong><span>Sudah hafal</span></div><div class="stat"><strong id="leftStat">—</strong><span>Perlu diulang</span></div></div>
-<div class="controls"><input class="field search" id="search" placeholder="⌕  Cari kanji, cara baca, atau arti…"><select class="field" id="group"><option value="all">Semua kosakata</option><option value="1">Awal modul</option><option value="2">Higiene & kontaminasi</option><option value="3">Proses & penyimpanan</option><option value="4">Keselamatan kerja</option></select><select class="field" id="direction"><option value="jp">Depan: Bahasa Jepang</option><option value="id">Depan: Arti Indonesia</option></select></div>
-<div class="modebar"><button class="modebtn active" data-mode="cards">✦ Flashcards</button><button class="modebtn" data-mode="quiz">♡ Kuis arti</button><button class="modebtn" data-mode="hard">↻ Belum hafal</button></div>
-<div id="cardsArea"><div class="deck-top"><span id="counter">Kartu 1 dari —</span><b id="topic">Kotoba Jepang</b></div><div class="card-wrap"><div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Ketuk untuk membalik kartu"><div class="face front"><span class="card-deco d1">✿</span><div class="card-kicker" id="frontKicker">KOSAKATA JEPANG</div><div class="word" id="frontWord">飲料</div><div class="tap-hint">ketuk kartu untuk melihat arti ↻</div><span class="card-deco d2">♡</span></div><div class="face back"><span class="card-deco d1">✧</span><div class="card-kicker">CARA BACA · ARTI</div><div class="reading" id="backReading">いんりょう</div><div class="meaning" id="backMeaning">minuman</div><div class="tap-hint">bagus! ulangi sampai melekat 🌱</div></div></div></div><div class="actions"><button class="btn soft" id="prev">← Sebelumnya</button><button class="btn main" id="flip">Balik kartu ✨</button><button class="btn soft" id="next">Berikutnya →</button></div><div class="actions"><button class="btn dont" id="missed">× Belum hafal</button><button class="btn know" id="known">✓ Sudah hafal</button><button class="btn soft" id="shuffle">⤨ Acak</button></div><div class="progress"><span id="progressBar"></span></div></div>
-<div class="quiz-area" id="quizArea"><div class="section"><div class="section-head"><h3>Mini quiz ✿</h3><small id="quizCount">1 / 10</small></div><div class="quiz-q" id="quizQuestion">飲料</div><div class="options" id="options"></div><p id="quizFeedback" style="font-size:13px;line-height:1.5"></p><button class="btn main" style="width:100%;margin-top:9px" id="nextQuiz">Soal berikutnya →</button></div></div>
-<section class="section"><div class="section-head"><h3>Mulai dari topik 🌷</h3><small>Pilih fokus belajar</small></div><div class="quick"><button data-group="1"><b>🌸 Dasar modul</b><span>Istilah industri & bahan pangan</span></button><button data-group="2"><b>🫧 Higiene pangan</b><span>Kebersihan, bahaya, kontaminasi</span></button><button data-group="3"><b>🍱 Proses produksi</b><span>Pengolahan, suhu, penyimpanan</span></button><button data-group="4"><b>🦺 Keselamatan kerja</b><span>Peralatan, risiko, prosedur</span></button></div></section>
-<p class="footer">FlashCard Kotoba PM by Hifa.</p>
+
+:root {
+
+  --ink: #493e60;
+
+  --muted: #8d829f;
+
+  --purple: #9679c8;
+
+  --lavender: #eee5ff;
+
+  --pink: #ffe5ef;
+
+  --cream: #fff9ee;
+
+  --mint: #e1f5e9;
+
+  --line: #eee5f5;
+
+}
+
+* { box-sizing: border-box; }
+
+body {
+
+  margin: 0;
+
+  min-height: 100vh;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  color: var(--ink);
+
+  background: linear-gradient(145deg, #fbf7ff, #fff5f7 60%, #fffaf0);
+
+}
+
+button { font: inherit; cursor: pointer; }
+
+.app {
+
+  width: 100%;
+
+  max-width: 680px;
+
+  margin: auto;
+
+  padding: 22px 17px 40px;
+
+}
+
+header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 23px;
+
+}
+
+.logo {
+
+  width: 48px;
+
+  height: 48px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 17px;
+
+  background: linear-gradient(135deg, #e8dcff, #ffdce9);
+
+  font-size: 25px;
+
+}
+
+h1 {
+
+  font-size: 21px;
+
+  margin: 0;
+
+  letter-spacing: -.6px;
+
+}
+
+.subtitle {
+
+  font-size: 12px;
+
+  color: var(--muted);
+
+  margin-top: 4px;
+
+}
+
+.hero {
+
+  padding: 23px 21px;
+
+  border-radius: 25px;
+
+  background: linear-gradient(120deg, #eee5ff, #ffe7ef, #fff5e5);
+
+  margin-bottom: 22px;
+
+}
+
+.eyebrow {
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #8d73b8;
+
+  font-weight: 800;
+
+}
+
+.hero h2 {
+
+  font-size: 28px;
+
+  line-height: 1.2;
+
+  margin: 10px 0 8px;
+
+}
+
+.hero p {
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  color: #786d8b;
+
+  margin: 0;
+
+}
+
+.section-title {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin: 23px 2px 12px;
+
+}
+
+.section-title h3 {
+
+  margin: 0;
+
+  font-size: 15px;
+
+}
+
+.section-title span {
+
+  font-size: 11px;
+
+  color: var(--muted);
+
+}
+
+/* Tombol halaman PDF */
+
+.pages {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-bottom: 22px;
+
+}
+
+.page-btn {
+
+  border: 1px solid #ece2f4;
+
+  background: #ffffffc9;
+
+  color: #807294;
+
+  border-radius: 13px;
+
+  min-width: 62px;
+
+  padding: 11px 13px;
+
+  font-size: 13px;
+
+  transition: .2s ease;
+
+}
+
+.page-btn.active {
+
+  background: var(--purple);
+
+  color: white;
+
+  border-color: var(--purple);
+
+  box-shadow: 0 5px 15px #9679c833;
+
+  transform: translateY(-1px);
+
+}
+
+/* Info halaman */
+
+.page-info {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin: 0 3px 12px;
+
+  font-size: 12px;
+
+  color: var(--muted);
+
+}
+
+.page-info strong {
+
+  color: var(--ink);
+
+}
+
+/* Flashcard */
+
+.card-scene {
+
+  perspective: 1200px;
+
+  width: 100%;
+
+}
+
+.card {
+
+  width: 100%;
+
+  min-height: 315px;
+
+  position: relative;
+
+  transform-style: preserve-3d;
+
+  transition: transform .65s cubic-bezier(.2,.75,.2,1);
+
+  cursor: pointer;
+
+}
+
+.card.flipped {
+
+  transform: rotateY(180deg);
+
+}
+
+.face {
+
+  position: absolute;
+
+  inset: 0;
+
+  min-height: 315px;
+
+  padding: 28px 22px;
+
+  border-radius: 27px;
+
+  border: 1px solid #ffffff;
+
+  box-shadow: 0 15px 38px #78629517;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+
+}
+
+.front {
+
+  background: radial-gradient(circle at top left, white, transparent 42%),
+
+              linear-gradient(145deg, #eee5ff, #ffe8f0);
+
+}
+
+.back {
+
+  transform: rotateY(180deg);
+
+  background: radial-gradient(circle at top right, white, transparent 40%),
+
+              linear-gradient(145deg, #e0f5e9, #fff5e7);
+
+}
+
+.card-label {
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+
+  color: #8d7ba7;
+
+  margin-bottom: 20px;
+
+}
+
+.jp-word {
+
+  font-size: clamp(32px, 8vw, 52px);
+
+  line-height: 1.4;
+
+  font-weight: 750;
+
+  overflow-wrap: anywhere;
+
+}
+
+.reading {
+
+  font-size: 21px;
+
+  color: #598c72;
+
+  margin-bottom: 13px;
+
+}
+
+.meaning {
+
+  font-size: clamp(19px, 5vw, 25px);
+
+  font-weight: 700;
+
+  line-height: 1.45;
+
+  overflow-wrap: anywhere;
+
+}
+
+.hint {
+
+  font-size: 12px;
+
+  color: #8f83a1;
+
+  margin-top: 24px;
+
+}
+
+.card-decoration {
+
+  position: absolute;
+
+  font-size: 23px;
+
+  opacity: .7;
+
+}
+
+.top-left { top: 17px; left: 19px; }
+
+.bottom-right { bottom: 16px; right: 20px; }
+
+.actions {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.2fr 1fr;
+
+  gap: 8px;
+
+  margin-top: 13px;
+
+}
+
+.action-btn {
+
+  border: 1px solid var(--line);
+
+  background: #fff;
+
+  color: #766a89;
+
+  border-radius: 14px;
+
+  padding: 13px 7px;
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+  transition: .15s;
+
+}
+
+.action-btn:active { transform: scale(.97); }
+
+.action-btn.primary {
+
+  background: var(--purple);
+
+  color: white;
+
+  border-color: var(--purple);
+
+}
+
+.progress {
+
+  height: 5px;
+
+  border-radius: 20px;
+
+  background: #eee6f4;
+
+  margin: 18px 2px 0;
+
+  overflow: hidden;
+
+}
+
+.progress-bar {
+
+  width: 0;
+
+  height: 100%;
+
+  background: linear-gradient(90deg, #b9a2ed, #f0a9c6);
+
+  transition: width .3s;
+
+}
+
+.empty {
+
+  text-align: center;
+
+  background: white;
+
+  padding: 25px 15px;
+
+  border-radius: 18px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+}
+
+footer {
+
+  text-align: center;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  color: #a196b0;
+
+  margin-top: 28px;
+
+}
+
+@media (max-width: 380px) {
+
+  .app { padding: 18px 12px 30px; }
+
+  .face { padding: 23px 14px; }
+
+  .page-btn { padding: 10px 11px; }
+
+  .action-btn { font-size: 11px; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main class="app">
+
+  <header>
+
+    <div class="logo">🌸</div>
+
+    <div>
+
+      <h1>Kotoba Bloom</h1>
+
+      <div class="subtitle">Japanese vocabulary flashcards</div>
+
+    </div>
+
+  </header>
+
+  <section class="hero">
+
+    <div class="eyebrow">YOUR LITTLE STUDY GARDEN</div>
+
+    <h2>一つずつ、覚えよう。</h2>
+
+    <p>Hafalkan kotoba sedikit demi sedikit. Pilih ページ sesuai modul, lalu ketuk kartu untuk melihat cara baca dan artinya. ✨</p>
+
+  </section>
+
+  <div class="section-title">
+
+    <h3>📚 Pilih ページ</h3>
+
+    <span>Nomor di kolom kiri PDF</span>
+
+  </div>
+
+  <div class="pages" id="pageButtons"></div>
+
+  <div id="studyArea">
+
+    <div class="page-info">
+
+      <span id="pageLabel">ページ 2</span>
+
+      <strong id="cardCounter">1 / 1</strong>
+
+    </div>
+
+    <div class="card-scene" id="cardScene">
+
+      <div class="card" id="flashcard" role="button" tabindex="0"
+
+           aria-label="Ketuk untuk membalik flashcard">
+
+        <div class="face front">
+
+          <span class="card-decoration top-left">✿</span>
+
+          <div class="card-label">KOSAKATA JEPANG</div>
+
+          <div class="jp-word" id="jpWord">飲料</div>
+
+          <div class="hint">Ketuk kartu untuk melihat arti ↻</div>
+
+          <span class="card-decoration bottom-right">♡</span>
+
+        </div>
+
+        <div class="face back">
+
+          <span class="card-decoration top-left">✧</span>
+
+          <div class="card-label">CARA BACA</div>
+
+          <div class="reading" id="reading">いんりょう</div>
+
+          <div class="meaning" id="meaning">minuman</div>
+
+          <div class="hint">Yoku dekimashita! 🌱</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button class="action-btn" id="previousBtn">← Kembali</button>
+
+      <button class="action-btn primary" id="flipBtn">Balik kartu ✨</button>
+
+      <button class="action-btn" id="nextBtn">Lanjut →</button>
+
+    </div>
+
+    <div class="progress">
+
+      <div class="progress-bar" id="progressBar"></div>
+
+    </div>
+
+  </div>
+
+  <footer>
+
+    Kotoba Bloom · Belajar dengan santai, ulangi sampai ingat 🌷
+
+  </footer>
+
 </main>
+
 <script>
-const DATA = {
-  "page_1": [
-    {"word": "飲料", "reading": "いんりょう", "meaning": "minuman"},
-    {"word": "食料品", "reading": "しょくりょうひん", "meaning": "bahan makanan"},
-    {"word": "欠かせません", "reading": "かかせません", "meaning": "ini penting"},
-    {"word": "製造する", "reading": "せいぞうする", "meaning": "pembuatan"},
-    {"word": "飲食料品製造業", "reading": "いんしょくりょうひんせいぞうぎょう", "meaning": "industri manufaktur makanan dan minuman"},
-    {"word": "ハムソーセージ", "reading": "ハムソーセージ", "meaning": "sosis daging"},
-    {"word": "魚の缶詰", "reading": "さかなのかんづめ", "meaning": "ikan kaleng"}
-  ],
-  "page_2": [
-    {"word": "惣菜", "reading": "そうざい", "meaning": "makanan pendamping"},
-    {"word": "冷凍食品", "reading": "れいとうしょくひん", "meaning": "makanan beku"},
-    {"word": "農林水産省", "reading": "のうりんすいさんしょう", "meaning": "Kementerian Pertanian, Kehutanan dan Perikanan"},
-    {"word": "統計", "reading": "とうけい", "meaning": "statistik"},
-    {"word": "国内生産額", "reading": "こくないせいさんがく", "meaning": "jumlah produksi dalam negeri"},
-    {"word": "数年", "reading": "すうねん", "meaning": "beberapa tahun"},
-    {"word": "兆円", "reading": "ちょうえん", "meaning": "triliun yen"},
-    {"word": "特定技能1号", "reading": "とくていぎのう１ごう", "meaning": "keahlian khusus tingkat 1"},
-    {"word": "在留資格者", "reading": "ざいりゅうしかくしゃ", "meaning": "orang berstatus penduduk"},
-    {"word": "業種", "reading": "ぎょうしゅ", "meaning": "industri"},
-    {"word": "食品衛生", "reading": "しょくひんえいせい", "meaning": "kebersihan makanan"},
-    {"word": "労働安全", "reading": "ろうどうあんぜん", "meaning": "keselamatan kerja"},
-    {"word": "知識", "reading": "ちしき", "meaning": "pengetahuan"},
-    {"word": "技能", "reading": "ぎのう", "meaning": "keahlian"}
-  ],
-  "page_3": [
-    {"word": "必要", "reading": "ひつよう", "meaning": "membutuhkan"},
-    {"word": "命", "reading": "いのち", "meaning": "kehidupan"},
-    {"word": "生命", "reading": "せいめい", "meaning": "kehidupan"},
-    {"word": "守る", "reading": "まもる", "meaning": "melindungi"},
-    {"word": "信用", "reading": "しんよう", "meaning": "kredibilitas"},
-    {"word": "安全保護具", "reading": "あんぜんほごぐ", "meaning": "peralatan perlindungan keselamatan"},
-    {"word": "着用", "reading": "ちゃくよう", "meaning": "memakai"},
-    {"word": "作業者", "reading": "さぎょうしゃ", "meaning": "pekerja"},
-    {"word": "健康", "reading": "けんこう", "meaning": "kesehatan"}
-  ],
-  "page_4": [
-    {"word": "基本", "reading": "きほん", "meaning": "dasar"},
-    {"word": "行動", "reading": "こうどう", "meaning": "tindakan"},
-    {"word": "清潔", "reading": "せいけつ", "meaning": "kebersihan"},
-    {"word": "設備", "reading": "せつび", "meaning": "fasilitas"},
-    {"word": "保管", "reading": "ほかん", "meaning": "penyimpanan"},
-    {"word": "共通する", "reading": "きょうつうする", "meaning": "memiliki kesamaan"}
-  ],
-  "page_5": [
-    {"word": "一般", "reading": "いっぱん", "meaning": "umum"},
-    {"word": "重要", "reading": "じゅうよう", "meaning": "penting"},
-    {"word": "施設", "reading": "しせつ", "meaning": "fasilitas"},
-    {"word": "種類", "reading": "しゅるい", "meaning": "jenis"},
-    {"word": "特徴", "reading": "とくちょう", "meaning": "fitur"},
-    {"word": "応じて", "reading": "おうじて", "meaning": "bergantung kepada"},
-    {"word": "工程", "reading": "こうてい", "meaning": "proses"},
-    {"word": "組み合わせて", "reading": "くみあわせて", "meaning": "dalam kombinasi"}
-  ],
-  "page_6": [
-    {"word": "危害要因", "reading": "きがいよういん", "meaning": "faktor bahaya"},
-    {"word": "含まれない", "reading": "ふくまれない", "meaning": "tidak termasuk"},
-    {"word": "活動", "reading": "かつどう", "meaning": "aktivitas"},
-    {"word": "学習する", "reading": "がくしゅうする", "meaning": "mempelajari"},
-    {"word": "物理的危害要因", "reading": "ぶつりてききがいよういん", "meaning": "bahaya fisik"},
-    {"word": "化学的危害要因", "reading": "かがくてききがいよういん", "meaning": "bahaya kimia"},
-    {"word": "生物的危害要因", "reading": "せいぶつてききがいよういん", "meaning": "bahaya biologis"},
-    {"word": "硬い", "reading": "かたい", "meaning": "keras"},
-    {"word": "歯が欠ける", "reading": "はがかける", "meaning": "gigi terkelupas"},
-    {"word": "尖って", "reading": "とがって", "meaning": "Lancip"},
-    {"word": "傷", "reading": "きず", "meaning": "menggores/tergores"},
-    {"word": "代表的な", "reading": "だいひょうてき", "meaning": "perwakilan"},
-    {"word": "金属片", "reading": "きんぞくへん", "meaning": "serpihan logam"},
-    {"word": "ガラス片", "reading": "ガラスへん", "meaning": "sepotong kaca"},
-    {"word": "プラスチック片", "reading": "プラスチックへん", "meaning": "potongan plastik"},
-    {"word": "石", "reading": "いし", "meaning": "batu"},
-    {"word": "原材料", "reading": "げんざいりょう", "meaning": "bahan baku"},
-    {"word": "取り除く", "reading": "とりのぞく", "meaning": "menghapus"}
-  ],
-  "page_7": [
-    {"word": "異物", "reading": "いぶつ", "meaning": "benda asing"},
-    {"word": "卵の殻", "reading": "たまごのから", "meaning": "kulit telur"},
-    {"word": "硬質異物", "reading": "こうしついぶつ", "meaning": "benda asing yang keras"},
-    {"word": "混入", "reading": "こんにゅう", "meaning": "kontaminasi"},
-    {"word": "防止", "reading": "ぼうし", "meaning": "pencegahan"},
-    {"word": "土", "reading": "つち", "meaning": "tanah"},
-    {"word": "小石", "reading": "こいし", "meaning": "kerikil"},
-    {"word": "洗浄", "reading": "せんじょう", "meaning": "Pencucian"},
-    {"word": "選別", "reading": "せんべつ", "meaning": "penyortiran"},
-    {"word": "下処理", "reading": "したしょり", "meaning": "persiapan"},
-    {"word": "野菜の根の部分", "reading": "やさいのねのぶぶん", "meaning": "bagian akar sayuran"},
-    {"word": "貝の殻", "reading": "かいのから", "meaning": "kerang laut"},
-    {"word": "魚のエラ", "reading": "さかなのえら", "meaning": "insang ikan"},
-    {"word": "骨", "reading": "ほね", "meaning": "tulang"},
-    {"word": "蓋", "reading": "ふた", "meaning": "tutup"},
-    {"word": "紙片", "reading": "しへん", "meaning": "selembar kertas"},
-    {"word": "不潔", "reading": "ふけつ", "meaning": "kekotoran"},
-    {"word": "不衛生", "reading": "ふえいせい", "meaning": "tidak sehat"},
-    {"word": "苦情（クレーム）", "reading": "くじょう", "meaning": "keluhan (klaim)"},
-    {"word": "返品", "reading": "へんぴん", "meaning": "kembali"},
-    {"word": "会社の信用", "reading": "かいしゃのしんよう", "meaning": "kepercayaan perusahaan"},
-    {"word": "落とす", "reading": "おとす", "meaning": "menjatuhkan"},
-    {"word": "物質", "reading": "ぶっしつ", "meaning": "bahan"},
-    {"word": "じゃがいもの芽", "reading": "じゃがいものめ", "meaning": "kecambah kentang"},
-    {"word": "殺菌剤", "reading": "さっきんざい", "meaning": "fungisida"},
-    {"word": "薬剤", "reading": "やくざい", "meaning": "obat"}
-  ],
-  "page_8": [
-    {"word": "化学物質", "reading": "かがくぶっしつ", "meaning": "bahan kimia"},
-    {"word": "反応", "reading": "はんのう", "meaning": "reaksi"},
-    {"word": "過剰", "reading": "かじょう", "meaning": "kelebihan"},
-    {"word": "症状", "reading": "しょうじょう", "meaning": "gejala"},
-    {"word": "唇", "reading": "くちびる", "meaning": "bibir"},
-    {"word": "まぶたの腫れ", "reading": "まぶたのはれ", "meaning": "pembengkakan kelopak mata"},
-    {"word": "法律", "reading": "ほうりつ", "meaning": "hukum"},
-    {"word": "発症数", "reading": "はっしょうすう", "meaning": "jumlah kasus"},
-    {"word": "加工食品", "reading": "かこうしょくひん", "meaning": "makanan olahan"},
-    {"word": "表示", "reading": "ひょうじ", "meaning": "menampilkan"},
-    {"word": "義務", "reading": "ぎむ", "meaning": "tugas"},
-    {"word": "推奨", "reading": "すいしょう", "meaning": "rekomendasi"},
-    {"word": "準ずるもの", "reading": "じゅんずるもの", "meaning": "setara"}
-  ],
-  "page_9": [
-    {"word": "品目", "reading": "ひんもく", "meaning": "barang"},
-    {"word": "移される", "reading": "うつされる", "meaning": "dipindahkan"},
-    {"word": "調理", "reading": "ちょうり", "meaning": "memasak"},
-    {"word": "まな板", "reading": "まないた", "meaning": "talenan"},
-    {"word": "包丁", "reading": "ほうちょう", "meaning": "pisau"},
-    {"word": "ゆで卵", "reading": "ゆでたまご", "meaning": "telur rebus"},
-    {"word": "洗浄剤", "reading": "せんじょうざい", "meaning": "sabun cuci"},
-    {"word": "残らない", "reading": "のこらない", "meaning": "tidak ketinggalan"},
-    {"word": "流す", "reading": "ながす", "meaning": "mengalir"},
-    {"word": "獲った", "reading": "とった", "meaning": "tertangkap"},
-    {"word": "条件", "reading": "じょうけん", "meaning": "kondisi"},
-    {"word": "赤身魚", "reading": "あかみざかな", "meaning": "ikan merah"},
-    {"word": "似た", "reading": "にた", "meaning": "sama"},
-    {"word": "増える", "reading": "ふえる", "meaning": "meningkatkan"}
-  ],
-  "page_10": [
-    {"word": "じゃがいもの芽", "reading": "じゃがいものめ", "meaning": "kecambah/tunas kentang"},
-    {"word": "吐き気", "reading": "はきけ", "meaning": "mual"},
-    {"word": "おう吐", "reading": "おうと", "meaning": "muntah"},
-    {"word": "下痢", "reading": "げり", "meaning": "diare"},
-    {"word": "腹痛", "reading": "ふくつう", "meaning": "sakit perut"},
-    {"word": "頭痛", "reading": "ずつう", "meaning": "sakit kepala"},
-    {"word": "食中毒", "reading": "しょくちゅうどく", "meaning": "keracunan makanan"},
-    {"word": "防ぐ", "reading": "ふせぐ", "meaning": "mencegah"},
-    {"word": "細菌", "reading": "さいきん", "meaning": "bakteri"},
-    {"word": "寄生虫", "reading": "きせいちゅう", "meaning": "parasit"},
-    {"word": "病原", "reading": "びょうげん", "meaning": "Patogen (organisme penyebab penyakit)"},
-    {"word": "顕微鏡", "reading": "けんびきょう", "meaning": "mikroskop"},
-    {"word": "生き物", "reading": "いきもの", "meaning": "makhluk hidup"},
-    {"word": "発症する", "reading": "はっしょうする", "meaning": "mengembangkan gejala"},
-    {"word": "鶏卵", "reading": "けいらん", "meaning": "telur ayam"},
-    {"word": "魚介類", "reading": "ぎょかいるい", "meaning": "makanan laut"},
-    {"word": "激しい下痢", "reading": "はげしいげり", "meaning": "diare parah"},
-    {"word": "毒素", "reading": "どくそ", "meaning": "toksin/racun"},
-    {"word": "井戸水", "reading": "いどみず", "meaning": "air sumur"},
-    {"word": "血便", "reading": "けつべん", "meaning": "tinja berdarah"},
-    {"word": "皮膚", "reading": "ひふ", "meaning": "kulit"},
-    {"word": "傷", "reading": "きず", "meaning": "menggores"},
-    {"word": "芽胞", "reading": "がほう", "meaning": "spora"},
-    {"word": "呼吸困難", "reading": "こきゅうこんなん", "meaning": "sulit bernafas"},
-    {"word": "発生", "reading": "はっせい", "meaning": "kejadian"}
-  ],
-  "page_11": [
-    {"word": "予防", "reading": "よぼう", "meaning": "pencegahan"},
-    {"word": "増やさない", "reading": "ふやさない", "meaning": "jangan menambah"},
-    {"word": "作業開始前", "reading": "さぎょうかいしまえ", "meaning": "sebelum mulai bekerja"},
-    {"word": "温度", "reading": "おんど", "meaning": "suhu"},
-    {"word": "水分", "reading": "すいぶん", "meaning": "kelembaban"},
-    {"word": "栄養", "reading": "えいよう", "meaning": "nutrisi"},
-    {"word": "湿度", "reading": "しつど", "meaning": "kelembaban"},
-    {"word": "環境", "reading": "かんきょう", "meaning": "lingkungan"},
-    {"word": "好み", "reading": "このみ", "meaning": "menyukai"},
-    {"word": "加熱", "reading": "かねつ", "meaning": "pemanasan"}
-  ],
-  "page_12": [
-    {"word": "厳しい", "reading": "きびしい", "meaning": "ketat"},
-    {"word": "濃度の薬剤", "reading": "のうどのやくざい", "meaning": "obat konsentrasi"},
-    {"word": "食品全体", "reading": "しょくひんぜんたい", "meaning": "semua makanan"},
-    {"word": "冷やす", "reading": "ひやす", "meaning": "dingin"},
-    {"word": "代表적", "reading": "だいひょうてき", "meaning": "perwakilan"},
-    {"word": "牡蠣", "reading": "かき", "meaning": "tiram"},
-    {"word": "汚染", "reading": "おせん", "meaning": "polusi"},
-    {"word": "大便", "reading": "だいべん", "meaning": "kotoran"},
-    {"word": "吐いた", "reading": "はいた", "meaning": "muntah"},
-    {"word": "溶液", "reading": "ようえき", "meaning": "larutan"},
-    {"word": "布巾", "reading": "ふきん", "meaning": "kain untuk pencuci piring"},
-    {"word": "原則", "reading": "げんそく", "meaning": "prinsip"},
-    {"word": "対策", "reading": "たいさく", "meaning": "tindakan"},
-    {"word": "有効", "reading": "ゆうこう", "meaning": "efektif"},
-    {"word": "食品製造工場", "reading": "しょくひんせいぞうこうじょう", "meaning": "pabrik pembuatan makanan"},
-    {"word": "持ち込まない", "reading": "もちこまない", "meaning": "jangan membawanya masuk"},
-    {"word": "感染", "reading": "かんせん", "meaning": "infeksi"},
-    {"word": "消毒", "reading": "しょうどく", "meaning": "desinfeksi"},
-    {"word": "おう吐物", "reading": "おうとぶつ", "meaning": "muntah"},
-    {"word": "専門用具", "reading": "せんもんようぐ", "meaning": "alat khusus"},
-    {"word": "処理する", "reading": "しょりする", "meaning": "proses"},
-    {"word": "広げない", "reading": "ひろげない", "meaning": "jangan menyebar"},
-    {"word": "増殖", "reading": "ぞうしょく", "meaning": "berkembang biak"},
-    {"word": "胞子", "reading": "ほうし", "meaning": "spora"},
-    {"word": "存在", "reading": "そんざい", "meaning": "adanya"},
-    {"word": "完全", "reading": "かんぜん", "meaning": "Sempurna"},
-    {"word": "豆", "reading": "まめ", "meaning": "kacang polong"},
-    {"word": "穀類", "reading": "こくるい", "meaning": "biji-bijian"},
-    {"word": "生えた", "reading": "はえた", "meaning": "dewasa"},
-    {"word": "表面", "reading": "ひょうめん", "meaning": "permukaan"},
-    {"word": "体内", "reading": "たいない", "meaning": "di dalam tubuh"},
-    {"word": "生", "reading": "なま", "meaning": "mentah"}
-  ],
-  "page_13": [
-    {"word": "共通", "reading": "きょうつう", "meaning": "umum"},
-    {"word": "清掃", "reading": "せいそう", "meaning": "pembersihan"},
-    {"word": "清潔", "reading": "せいけつ", "meaning": "merawat"},
-    {"word": "習慣付", "reading": "しゅうかんづけ", "meaning": "membiasakan"},
-    {"word": "順序", "reading": "じゅんじょ", "meaning": "urutan"},
-    {"word": "数量", "reading": "すうりょう", "meaning": "kuantitas / jumlah"},
-    {"word": "磨く", "reading": "みがく", "meaning": "menggosok"},
-    {"word": "拭いたり", "reading": "ふいたり", "meaning": "mengelap"},
-    {"word": "見た目", "reading": "みため", "meaning": "terlihat"},
-    {"word": "実行", "reading": "じっこう", "meaning": "eksekusi"},
-    {"word": "保つ", "reading": "たもつ", "meaning": "menjaga"},
-    {"word": "手指", "reading": "てゆび", "meaning": "jari"},
-    {"word": "役立ちます", "reading": "やくだちます", "meaning": "bermanfaat"},
-    {"word": "触れる", "reading": "ふれる", "meaning": "menyentuh"},
-    {"word": "交差汚染", "reading": "こうさおせん", "meaning": "kontaminasi silang"},
-    {"word": "使い分け", "reading": "つかいわけ", "meaning": "Penggunaan yang tepat"},
-    {"word": "通常", "reading": "つうじょう", "meaning": "biasanya"},
-    {"word": "清潔作業区域", "reading": "せいけつさぎょうくいき", "meaning": "area kerja yang bersih"},
-    {"word": "汚染作業区域", "reading": "おせんさぎょうくいき", "meaning": "area kerja yang terkontaminasi"},
-    {"word": "区分衛生管理", "reading": "くぶんえいせいかんり", "meaning": "manajemen kebersihan terpisah"},
-    {"word": "取り扱い", "reading": "とりあつかい", "meaning": "penanganan"},
-    {"word": "下処理", "reading": "したしょり", "meaning": "Persiapan"},
-    {"word": "出荷", "reading": "しゅっか", "meaning": "pengiriman"},
-    {"word": "詰めた", "reading": "つめた", "meaning": "diisi"},
-    {"word": "通らない", "reading": "とおらない", "meaning": "tidak melewati"},
-    {"word": "不要", "reading": "ふよう", "meaning": "Tidak perlu"},
-    {"word": "通路", "reading": "つうろ", "meaning": "lorong"},
-    {"word": "定期的", "reading": "ていきてき", "meaning": "Secara teratur"},
-    {"word": "虫", "reading": "むし", "meaning": "serangga"},
-    {"word": "状況", "reading": "じょうきょう", "meaning": "situasi"},
-    {"word": "排水溝", "reading": "はいすいこう", "meaning": "mengeringkan"},
-    {"word": "分解", "reading": "ぶんかい", "meaning": "membongkar"},
-    {"word": "目立つ", "reading": "めだつ", "meaning": "menonjol / mencolok"},
-    {"word": "直接", "reading": "ちょくせつ", "meaning": "secara langsung"},
-    {"word": "乾燥する", "reading": "かんそうする", "meaning": "pengeringan"},
-    {"word": "濡れる", "reading": "ぬれる", "meaning": "menjadi basah"},
-    {"word": "保管庫", "reading": "ほかんこ", "meaning": "gudang"},
-    {"word": "名称", "reading": "めいしょう", "meaning": "nama"}
-  ],
-  "page_14_onwards": [
-    // 14ページ目以降の残りのデータ（職場、安全保護具、手順、安全注意、非常口など）
-    {"word": "職場", "reading": "しょくば", "meaning": "tempat kerja"},
-    {"word": "健康診断", "reading": "けんこうしんだん", "meaning": "cek kesehatan"},
-    {"word": "検便", "reading": "けんべん", "meaning": "tes tinja"},
-    {"word": "非常口", "reading": "ひじょうぐち", "meaning": "pintu darurat"},
-    {"word": "消火器", "reading": "しょうかき", "meaning": "alat pemadam api"}
-    // ほか、後続ページの単語群も同様にこちらに含まれます
-  ]
-};
-const category = w => {const s=(w.word+" "+w.meaning).toLowerCase(); if(/安全|労働|事故|災害|転倒|滑る|火傷|避難|装置|危険|注意|高所|保護具|感電|呼吸困難|腰痛/.test(s))return 4;if(/温度|冷凍|保管|包装|製造|工程|加熱|冷却|出荷|解凍|成型|裁断|充填|検査|水産物|納品|配管|加工/.test(s))return 3;if(/衛生|清潔|汚染|洗浄|細菌|寄生虫|カビ|異物|食中毒|消毒|殺菌|手指|食品|菌|病原|防止|危害|薬剤|感染/.test(s))return 2;return 1};
-let filtered=DATA.map((x,i)=>({...x,id:i,group:category(x)})), index=0, mode="cards", flipped=false, known=new Set(), missed=new Set(), quizIndex=0, quizOrder=[];
-const $=id=>document.getElementById(id);
-function refreshStats(){$("totalStat").textContent=DATA.length;$("knownStat").textContent=known.size;$("leftStat").textContent=DATA.length-known.size}
-function current(){return filtered[index]}
-function render(){if(!filtered.length){$("frontWord").textContent="Tidak ditemukan";$("backReading").textContent="";$("backMeaning").textContent="Coba kata lain ya";$("counter").textContent="0 kartu";return}
- index=(index+filtered.length)%filtered.length;let x=current();flipped=false;$("flashcard").classList.remove("flipped");let dir=$("direction").value;
- $("frontKicker").textContent=dir==="jp"?"KOSAKATA JEPANG":"ARTI BAHASA INDONESIA";
- $("frontWord").textContent=dir==="jp"?x.word:x.meaning;$("backReading").textContent=x.reading||"—";$("backMeaning").textContent=dir==="jp"?x.meaning:x.word;
- $("counter").textContent=`Kartu ${index+1} dari ${filtered.length}`;$("topic").textContent=["","Dasar modul","Higiene pangan","Proses produksi","Keselamatan kerja"][x.group]||"Kotoba Jepang";
- $("progressBar").style.width=((index+1)/filtered.length*100)+"%";$("missed").textContent=missed.has(x.id)?"× Ditandai belum hafal":"× Belum hafal";$("known").textContent=known.has(x.id)?"✓ Sudah hafal":"✓ Sudah hafal";refreshStats()}
-function flip(){flipped=!flipped;$("flashcard").classList.toggle("flipped",flipped)}
-function applyFilters(){let q=$("search").value.toLowerCase().trim(),g=$("group").value;filtered=DATA.map((x,i)=>({...x,id:i,group:category(x)})).filter(x=>(g==="all"||x.group===+g)&&(!q||(x.word+" "+x.reading+" "+x.meaning).toLowerCase().includes(q)));if(mode==="hard")filtered=filtered.filter(x=>missed.has(x.id));index=0;render()}
-function move(n){index=(index+n+filtered.length)%filtered.length;render()}
-function shuffle(){for(let i=filtered.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[filtered[i],filtered[j]]=[filtered[j],filtered[i]]}index=0;render()}
-function setMode(m){mode=m;document.querySelectorAll(".modebtn").forEach(b=>b.classList.toggle("active",b.dataset.mode===m));$("cardsArea").style.display=m==="quiz"?"none":"block";$("quizArea").style.display=m==="quiz"?"block":"none";if(m==="hard")applyFilters();else if(m==="cards")applyFilters();if(m==="quiz")startQuiz()}
-function startQuiz(){quizOrder=DATA.map((_,i)=>i).sort(()=>Math.random()-.5).slice(0,10);quizIndex=0;renderQuiz()}
-function renderQuiz(){if(!quizOrder.length)return;let x=DATA[quizOrder[quizIndex%quizOrder.length]];$("quizCount").textContent=`${quizIndex+1} / ${quizOrder.length}`;$("quizQuestion").textContent=x.word;let choices=[x];while(choices.length<4){let c=DATA[Math.floor(Math.random()*DATA.length)];if(!choices.includes(c))choices.push(c)}choices.sort(()=>Math.random()-.5);$("options").innerHTML="";$("quizFeedback").textContent="";choices.forEach(c=>{let b=document.createElement("button");b.className="option";b.textContent=c.meaning;b.onclick=()=>{document.querySelectorAll(".option").forEach(el=>el.disabled=true);if(c===x){b.classList.add("correct");$("quizFeedback").textContent="Betul! ✨ "+x.reading+" · "+x.word;known.add(quizOrder[quizIndex]);refreshStats()}else{b.classList.add("wrong");$("quizFeedback").textContent="Jawaban: "+x.meaning+" · "+x.reading;missed.add(quizOrder[quizIndex])}};$("options").appendChild(b)})}
-$("flashcard").onclick=flip;$("flashcard").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip()}};$("flip").onclick=flip;$("prev").onclick=()=>move(-1);$("next").onclick=()=>move(1);$("shuffle").onclick=shuffle;$("search").oninput=applyFilters;$("group").onchange=applyFilters;$("direction").onchange=render;$("known").onclick=()=>{if(current()){known.add(current().id);missed.delete(current().id);render()}};$("missed").onclick=()=>{if(current()){missed.add(current().id);known.delete(current().id);render()}};$("nextQuiz").onclick=()=>{quizIndex++;renderQuiz()};document.querySelectorAll(".modebtn").forEach(b=>b.onclick=()=>setMode(b.dataset.mode));document.querySelectorAll("[data-group]").forEach(b=>b.onclick=()=>{$("group").value=b.dataset.group;setMode("cards");applyFilters();window.scrollTo({top:300,behavior:"smooth"})});
-refreshStats();render();
-</script></body></html>
+
+/*
+
+  DATA KOSAKATA
+
+  page   = nomor pada kolom ページ paling kiri PDF
+
+  number = nomor urut pada kolom 番号 PDF
+
+  Masukkan semua kosakata di sini.
+
+  Jangan menggunakan nomor halaman PDF viewer.
+
+*/
+
+const DATA = [
+
+  // ページ 2
+
+  { page: 2, number: 1, word: "飲料", reading: "いんりょう", meaning: "minuman" },
+
+  { page: 2, number: 2, word: "食料品", reading: "しょくりょうひん", meaning: "bahan makanan" },
+
+  { page: 2, number: 3, word: "欠かせません", reading: "かかせません", meaning: "ini penting" },
+
+  { page: 2, number: 4, word: "製造する", reading: "せいぞうする", meaning: "memproduksi" },
+
+  { page: 2, number: 5, word: "飲食料品製造業", reading: "いんしょくりょうひんせいぞうぎょう", meaning: "industri manufaktur makanan dan minuman" },
+
+  { page: 2, number: 6, word: "ハムソーセージ", reading: "ハムソーセージ", meaning: "ham dan sosis" },
+
+  { page: 2, number: 7, word: "魚の缶詰", reading: "さかなのかんづめ", meaning: "ikan kalengan" },
+
+  { page: 2, number: 8, word: "惣菜", reading: "そうざい", meaning: "makanan siap saji / lauk" },
+
+  { page: 2, number: 9, word: "冷凍食品", reading: "れいとうしょくひん", meaning: "makanan beku" },
+
+  { page: 2, number: 10, word: "農林水産省", reading: "のうりんすいさんしょう", meaning: "Kementerian Pertanian, Kehutanan dan Perikanan" },
+
+  { page: 2, number: 11, word: "統計", reading: "とうけい", meaning: "statistik" },
+
+  { page: 2, number: 12, word: "国内生産額", reading: "こくないせいさんがく", meaning: "nilai produksi dalam negeri" },
+
+  { page: 2, number: 13, word: "数年", reading: "すうねん", meaning: "beberapa tahun" },
+
+  { page: 2, number: 14, word: "兆円", reading: "ちょうえん", meaning: "triliun yen" },
+
+  { page: 2, number: 15, word: "特定技能1号", reading: "とくていぎのういちごう", meaning: "Specified Skilled Worker (i) / keterampilan khusus 1" },
+
+  { page: 2, number: 16, word: "在留資格者", reading: "ざいりゅうしかくしゃ", meaning: "pemegang status izin tinggal" },
+
+  { page: 2, number: 17, word: "業種", reading: "ぎょうしゅ", meaning: "jenis industri" },
+
+  { page: 2, number: 18, word: "食品衛生", reading: "しょくひんえいせい", meaning: "higiene pangan" },
+
+  { page: 2, number: 19, word: "労働安全", reading: "ろうどうあんぜん", meaning: "keselamatan kerja" },
+
+  { page: 2, number: 20, word: "知識", reading: "ちしき", meaning: "pengetahuan" },
+
+  { page: 2, number: 21, word: "技能", reading: "ぎのう", meaning: "keterampilan" },
+
+  { page: 2, number: 22, word: "必要", reading: "ひつよう", meaning: "perlu / diperlukan" },
+
+  { page: 2, number: 23, word: "命", reading: "いのち", meaning: "nyawa" },
+
+  { page: 2, number: 24, word: "生命", reading: "せいめい", meaning: "kehidupan" },
+
+  { page: 2, number: 25, word: "守る", reading: "まもる", meaning: "melindungi / menjaga" },
+
+  { page: 2, number: 26, word: "信用", reading: "しんよう", meaning: "kepercayaan" },
+
+  { page: 2, number: 27, word: "安全保護具", reading: "あんぜんほごぐ", meaning: "alat pelindung keselamatan" },
+
+  { page: 2, number: 28, word: "着用", reading: "ちゃくよう", meaning: "pemakaian / mengenakan" },
+
+  { page: 2, number: 29, word: "作業者", reading: "さぎょうしゃ", meaning: "pekerja" },
+
+  { page: 2, number: 30, word: "健康", reading: "けんこう", meaning: "kesehatan" },
+
+  // ページ 3
+
+  { page: 3, number: 1, word: "基本", reading: "きほん", meaning: "dasar" },
+
+  { page: 3, number: 2, word: "行動", reading: "こうどう", meaning: "tindakan / perilaku" },
+
+  { page: 3, number: 3, word: "清潔", reading: "せいけつ", meaning: "bersih / kebersihan" },
+
+  { page: 3, number: 4, word: "設備", reading: "せつび", meaning: "fasilitas / peralatan" },
+
+  { page: 3, number: 5, word: "保管", reading: "ほかん", meaning: "penyimpanan" },
+
+  { page: 3, number: 6, word: "共通する", reading: "きょうつうする", meaning: "memiliki kesamaan" },
+
+  { page: 3, number: 7, word: "一般", reading: "いっぱん", meaning: "umum" },
+
+  { page: 3, number: 8, word: "重要", reading: "じゅうよう", meaning: "penting" },
+
+  { page: 3, number: 9, word: "施設", reading: "しせつ", meaning: "fasilitas" },
+
+  { page: 3, number: 10, word: "種類", reading: "しゅるい", meaning: "jenis" },
+
+  { page: 3, number: 11, word: "特徴", reading: "とくちょう", meaning: "ciri khas" },
+
+  { page: 3, number: 12, word: "応じて", reading: "おうじて", meaning: "sesuai dengan" },
+
+  { page: 3, number: 13, word: "工程", reading: "こうてい", meaning: "tahapan proses" },
+
+  { page: 3, number: 14, word: "組み合わせて", reading: "くみあわせて", meaning: "menggabungkan" },
+
+  // ページ 6 — contoh kosakata yang terlihat di halaman tersebut
+
+  { page: 6, number: 1, word: "物理的危害要因", reading: "ぶつりてききがいよういん", meaning: "faktor bahaya fisik" }
+
+];
+
+const $ = id => document.getElementById(id);
+
+let selectedPage = null;
+
+let deck = [];
+
+let index = 0;
+
+function getPages() {
+
+  return [...new Set(DATA.map(item => item.page))]
+
+    .sort((a, b) => a - b);
+
+}
+
+function buildPageButtons() {
+
+  const container = $("pageButtons");
+
+  container.innerHTML = "";
+
+  getPages().forEach(page => {
+
+    const button = document.createElement("button");
+
+    button.className = "page-btn";
+
+    button.textContent = `ページ ${page}`;
+
+    button.dataset.page = page;
+
+    button.addEventListener("click", () => {
+
+      selectPage(page);
+
+    });
+
+    container.appendChild(button);
+
+  });
+
+}
+
+function selectPage(page) {
+
+  selectedPage = page;
+
+  deck = DATA
+
+    .filter(item => item.page === page)
+
+    .slice()
+
+    .sort((a, b) => a.number - b.number);
+
+  index = 0;
+
+  document.querySelectorAll(".page-btn").forEach(button => {
+
+    button.classList.toggle(
+
+      "active",
+
+      Number(button.dataset.page) === page
+
+    );
+
+  });
+
+  $("pageLabel").textContent = `ページ ${page}`;
+
+  $("studyArea").style.display = deck.length ? "block" : "none";
+
+  renderCard();
+
+}
+
+function renderCard() {
+
+  if (!deck.length) return;
+
+  const item = deck[index];
+
+  $("flashcard").classList.remove("flipped");
+
+  $("jpWord").textContent = item.word;
+
+  $("reading").textContent = item.reading;
+
+  $("meaning").textContent = item.meaning;
+
+  $("cardCounter").textContent =
+
+    `No. ${item.number} · ${index + 1} / ${deck.length}`;
+
+  $("progressBar").style.width =
+
+    `${((index + 1) / deck.length) * 100}%`;
+
+  $("previousBtn").disabled = index === 0;
+
+  $("nextBtn").disabled = index === deck.length - 1;
+
+  $("previousBtn").style.opacity = index === 0 ? ".45" : "1";
+
+  $("nextBtn").style.opacity =
+
+    index === deck.length - 1 ? ".45" : "1";
+
+}
+
+function flipCard() {
+
+  $("flashcard").classList.toggle("flipped");
+
+}
+
+function nextCard() {
+
+  if (index < deck.length - 1) {
+
+    index++;
+
+    renderCard();
+
+  }
+
+}
+
+function previousCard() {
+
+  if (index > 0) {
+
+    index--;
+
+    renderCard();
+
+  }
+
+}
+
+$("flashcard").addEventListener("click", flipCard);
+
+$("flipBtn").addEventListener("click", flipCard);
+
+$("nextBtn").addEventListener("click", nextCard);
+
+$("previousBtn").addEventListener("click", previousCard);
+
+$("flashcard").addEventListener("keydown", event => {
+
+  if (event.key === "Enter" || event.key === " ") {
+
+    event.preventDefault();
+
+    flipCard();
+
+  }
+
+});
+
+// Tampilkan pilihan ページ pertama secara otomatis
+
+buildPageButtons();
+
+const firstPage = getPages()[0];
+
+if (firstPage !== undefined) {
+
+  selectPage(firstPage);
+
+}
+
+</script>
+
+</body>
+
+</html>
